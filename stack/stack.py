@@ -31,6 +31,7 @@ return elements in Last In First Out order.
             self.size -=1
             return self.storage.pop() """
 
+
 from singly_linked_list import LinkedList
 
 class Stack:
