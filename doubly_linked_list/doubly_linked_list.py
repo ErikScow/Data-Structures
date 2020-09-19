@@ -53,6 +53,7 @@ class DoublyLinkedList:
             new_head = self.head.next
             self.head = new_head
         return removed
+
     """
     Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -76,32 +77,66 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_tail(self):
-        pass
+        removed = self.tail.value
+        self.length -= 1
+        if self.head == self.tail:
+            self.head = None
+            self.tail = None
+        else:
+            new_tail = self.tail.prev
+            self.tail = new_tail
+        return removed
             
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        value = self.delete(node)
+        self.add_to_head(value)
+
         
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        value = self.delete(node)
+        self.add_to_tail(value)
 
     """
     Deletes the input node from the List, preserving the 
     order of the other elements of the List.
     """
     def delete(self, node):
-        pass
+        self.length -= 1
+
+        value = node.value
+
+        if self.head is None or node is None:
+            return
+        if self.head == node:
+            self.head = node.next
+        if node.next == None and node.prev == None:
+            self.head = None
+            self.tail = None
+        if node.next is not None:
+            node.next.prev = node.prev
+        if node.prev is not None:
+            node.prev.next = node.next
+        
+        return value
+                
 
     """
     Finds and returns the maximum value of all the nodes 
     in the List.
     """
     def get_max(self):
-        pass
+        current_node = self.head
+        value = current_node.value
+        while current_node is not None:
+            if current_node.value > value:
+                value = current_node.value
+            current_node = current_node.next
+        return value
