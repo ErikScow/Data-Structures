@@ -122,6 +122,14 @@ class DoublyLinkedListTests(unittest.TestCase):
         self.assertIsNone(self.dll.tail)
         self.assertEqual(len(self.dll), 0)
 
+        self.dll.add_to_tail(1)
+        self.dll.add_to_head(9)
+        self.dll.add_to_tail(6)
+
+        self.dll.delete(self.dll.tail)
+        self.assertEqual(self.dll.head.value, 9)
+        self.assertEqual(self.dll.tail.value, 1)
+
     def test_get_max(self):
         self.assertEqual(self.dll.get_max(), 1)
         self.dll.add_to_tail(100)
