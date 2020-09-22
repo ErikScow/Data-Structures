@@ -103,6 +103,8 @@ class DoublyLinkedList:
             return
         if self.head == node:
             self.head = node.next
+        if self.tail == node:
+            self.tail = node.prev
         if node.next == None and node.prev == None:
             self.head = None
             self.tail = None
