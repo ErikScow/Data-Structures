@@ -53,24 +53,46 @@ class BSTNode:
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        fn(self)
-        self.right.for_each()
-        self.left.for_each()
+        fn(self.value)
+        if self.right is not None:
+            self.right.for_each(fn)
+        if self.left is not None:
+            self.left.for_each(fn)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        if self.left is None and self.right is None:
+            print(self.value)
+            return
+        if self.left is not None:
+            self.left.in_order_print()
+        print(self.value)
+        if self.right is not None:
+            self.right.in_order_print()
+        
+        
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
+    from queue.py import Queue
     def bft_print(self):
-        pass
+        x = Queue()
+        x.enqueue(self.value)
+        while x.len is not 0:
+            current_node = x.dequeue()
+            print(current_node.value)
+            if current_node.left:
+                x.enqueue(current_node.left)
+            if current_node.right:
+                x.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+    from stack import Stack
     def dft_print(self):
         pass
 
@@ -88,7 +110,7 @@ class BSTNode:
 """
 This code is necessary for testing the `print` methods
 """
-""" bst = BSTNode(1)
+bst = BSTNode(1)
 
 bst.insert(8)
 bst.insert(5)
@@ -98,7 +120,7 @@ bst.insert(3)
 bst.insert(4)
 bst.insert(2)
 
-bst.bft_print()
+""" bst.bft_print()
 bst.dft_print()
 
 print("elegant methods")
@@ -107,5 +129,4 @@ bst.pre_order_dft()
 print("in order")
 bst.in_order_dft()
 print("post order")
-bst.post_order_dft()  
- """
+bst.post_order_dft()   """
